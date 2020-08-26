@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const User  = require("./user");
 
+//get
 router.get("/user", (req, res)=>{
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader("access-control-allow-credentials", "true");
@@ -12,6 +13,7 @@ router.get("/user", (req, res)=>{
         });
 });
 
+//add
 router.post("/addUser", (req, res)=>{
       res.setHeader("Access-Control-Allow-Origin", "*");
       res.setHeader("access-control-allow-credentials", "true");
@@ -22,8 +24,8 @@ router.post("/addUser", (req, res)=>{
               console.log(user)
           })
   });
-  /*
 
+//edit
   router.put("/putUser/:id", (req, res)=>{
       User.findByIdAndUpdate({_id:req.params.id}, req.body)
           .then(()=>{
@@ -34,12 +36,12 @@ router.post("/addUser", (req, res)=>{
           })
   });
 
+//delete
   router.delete("/deleteUser/:id", (req, res)=>{
       User.deleteOne({_id:req.params.id})
           .then(user=>{
               res.send(user);
           })
   });
-  */
 
 module.exports = router;
