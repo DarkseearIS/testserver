@@ -33,13 +33,14 @@ router.post("/addUser", (req, res)=>{
                   });
           })
   });
-
+  */
+  //delete
   router.delete("/deleteUser/:id", (req, res)=>{
       User.deleteOne({_id:req.params.id})
           .then(user=>{
               res.send(user);
           })
   });
-  */
+
 
 module.exports = router;
