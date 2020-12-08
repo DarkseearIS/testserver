@@ -25,6 +25,6 @@ app.use(bodyParser.json());
 app.use("/api", require("./api"));
 
 
-http.createServer(app).listen(3300,"192.168.1.51");
+http.createServer(app).listen(80,"192.168.1.51");
 // начинаем прослушивать подключения на 3200 порту
 https.createServer(options,app).listen(3200,"192.168.1.51");
