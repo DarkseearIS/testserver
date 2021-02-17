@@ -13,12 +13,19 @@ router.get("/client", (req, res)=>{
 
 //get user info
 router.get("/user", (req, res)=>{
+
     User.find({})
         .then(user => {
             res.send(user)
         });
 });
 
+/*router.get("/.well-known/pki-validation/394C031920C1993F9E3A72325E73946B.txt", (req, res)=>{
+
+            res.sendFile(__dirname + "/394C031920C1993F9E3A72325E73946B.txt")
+
+});
+*/
 ////////////////////////////////////////////////////////////////////////////////
 
 //add client
