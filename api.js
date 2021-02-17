@@ -1,45 +1,23 @@
 const express = require("express");
 const router = express.Router();
 const User  = require("./user");
-const Client = require("./clients");
 
-//get client info
-router.get("/client", (req, res)=>{
-    Client.find({})
-        .then(client => {
-            res.send(client)
-        });
-});
-
-//get user info
+//get
 router.get("/user", (req, res)=>{
-
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("access-control-allow-credentials", "true");
+    res.setHeader("Access-Control-Request-Method", "*");
     User.find({})
         .then(user => {
             res.send(user)
         });
 });
 
-/*router.get("/.well-known/pki-validation/394C031920C1993F9E3A72325E73946B.txt", (req, res)=>{
-
-            res.sendFile(__dirname + "/394C031920C1993F9E3A72325E73946B.txt")
-
-});
-*/
-////////////////////////////////////////////////////////////////////////////////
-
-//add client
-router.post("/addClient", (req, res)=>{
-    Client.create(req.body)
-        .then(client=> {
-            res.send(client);
-            console.log(client)
-        })
-});
-
-
-//add user
+//add
 router.post("/addUser", (req, res)=>{
+      res.setHeader("Access-Control-Allow-Origin", "*");
+      res.setHeader("access-control-allow-credentials", "true");
+      res.setHeader("Access-Control-Request-Method", "*");
       User.create(req.body)
           .then(user=> {
               res.send(user);
@@ -47,48 +25,23 @@ router.post("/addUser", (req, res)=>{
           })
   });
 
-/////////////////////////////////////////////////////////////////////////////////
-
-  //edit client
-  router.put("/putClient/:id", (req, res)=>{
-      Client.findByIdAndUpdate({_id:req.params.id}, req.body)
-          .then(()=>{
-              User.findOne({_id: req.params.id})
-                  .then(client => {
-                      res.send(client)
-                  });
-          })
-  });
-
-  //edit user
+//edit
   router.put("/putUser/:id", (req, res)=>{
       User.findByIdAndUpdate({_id:req.params.id}, req.body)
           .then(()=>{
-              User.findOne({_id: req.params.id})
+              User.findOne({_id: req.param.id})
                   .then(user => {
                       res.send(user)
                   });
           })
   });
 
-////////////////////////////////////////////////////////////////////////////////
-
-  //delete Client
-  router.delete("/deleteClient/:id", (req, res)=>{
-      Client.deleteOne({_id:req.params.id})
-          .then(client=>{
-              res.send(client);
-          })
-  });
-
-  //delete User
+//delete
   router.delete("/deleteUser/:id", (req, res)=>{
       User.deleteOne({_id:req.params.id})
           .then(user=>{
               res.send(user);
-              console.log(`deleted ${req.params.id}`);
           })
   });
-
 
 module.exports = router;
